@@ -1,20 +1,50 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="contenedor">
+    <header>
+      <div class="welcome">
+        <ion-icon name="person-circle"></ion-icon>
+        <div class="saludo">
+          Hello Tomas Ignacio Paredes
+        </div>
+        <ion-icon name="settings"></ion-icon>
+      </div>
+      <div class="tarjeta">
+        <div class="datos-tarjeta">
+          <div class="nombre-tarjeta">Tomás Alvares</div>
+          <div class="monto-tarjeta">$54.000</div>
+          <div class="numero-tarjeta">**** **** **** 0123</div>
+        </div>
+        <div class="icono-tarjeta"><img src="/assets/mastercard.png" alt=""></div>
+      </div>
+    </header>
+    <article>
+      <section class="transacciones">
+        <div class="transaccion" (click)="animaTransaccion(0)">
+          <div class="info-transaccion">
+            <h1>Muñeca system</h1>
+            <h4>10 de Agosto de 2030</h4>
+          </div>
+          <div class="boton-transaccion">
+            +
+          </div>
+        </div>
+        <div class="transaccion" (click)="animaTransaccion(1)">
+          <div class="info-transaccion">
+            <h1>Muñeca system</h1>
+            <h4>10 de Agosto de 2030</h4>
+          </div>
+          <div class="boton-transaccion">
+            +
+          </div>
+        </div>
+      </section>
+    </article>
   </div>
+  <footer>
+    <ion-icon name="home-outline"></ion-icon>
+    <ion-icon name="stats-chart-outline"></ion-icon>
+    <ion-icon name="mail-open-outline"></ion-icon>
+    <!-- [routerLink]="['/wallet']" -->
+    <ion-icon name="wallet-outline" (click)="irWallet()"></ion-icon>
+  </footer>
 </ion-content>
