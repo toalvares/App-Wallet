@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AnimationController, NavController } from '@ionic/angular';
+import { AnimationController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,23 +8,54 @@ import { AnimationController, NavController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(
-    private nav:NavController,
-    private anim:AnimationController) {}
-  
-  animaTransaccion(index:number){
-    this.anim.create().addElement(document.querySelectorAll(".transaccion")[index]!)
-    .duration(200).iterations(2).keyframes([
-      {offset: 0, "transform": 'translateX(-3px)'},
-      {offset: .5, "transform": 'translateX(3px)'},
-      {offset: 1, "transform": 'translateX(0px)'},
-    ])
-    .onFinish(()=>this.irWallet())
-    .play()
+  zapatillas = [
+    {nombre: "Total 90", precio: 45000, descuento: 0, favoritas: false, estrellas: 4, imagen: "4.png"},
+    {nombre: "AdiFom", precio: 50000, descuento: 20, favoritas: true, estrellas: 5, imagen: "5.png"},
+    {nombre: "Jordan 1", precio: 150000, descuento: 6, favoritas: true, estrellas: 5, imagen: "7.png"},
+    {nombre: "Air Max", precio: 95000, descuento: 30, favoritas: false, estrellas: 3, imagen: "8.png"}
+  ]
+
+  poneEstrellas(cantidad: number){
+    let resultado = ""
+    for(let i = 0 ; i < cantidad; i++ ){
+      resultado += "⭐"
+    }
+    return resultado
   }
 
-  irWallet(){
-    this.nav.navigateForward('wallet');
+  agregar(zapatilla: any){
+   if(localStorage.getItem("carro")== null){
+    zapatilla.cantidad = 1
+    localStorage.setItem("carro", JSON.stringify([zapatilla]))
+   }else{
+    let carro = JSON.parse(localStorage.getItem("carro")!)
+    let encontrado = false
+    for(let zap of carro){
+      if(zap.nombre == zapatilla.nombre){
+        zap.cantidad += 1
+        encontrado = true
+      }
+    }
+    if(!encontrado){
+      zapatilla.cantidad = 1
+      carro.push(zapatilla)
+    }
+    localStorage.setItem("carro", JSON.stringify(carro))
+   }
   }
+
+  getCantidadCarro(){
+    let contador = 0
+    for (let zapatilla of JSON.parse(localStorage.getItem("carro")!)){
+      contador += zapatilla.cantidad
+    }
+  }
+
+
+  constructor(
+    private anim:AnimationController,
+    private toast: ToastController
+    ) {}
+
 
 }

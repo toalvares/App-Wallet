@@ -1,50 +1,118 @@
 <ion-content [fullscreen]="true">
-  <div id="contenedor">
+
+  <div id="contenido">
     <header>
-      <div class="welcome">
+      <div id="arriba">
+        <ion-icon name="grid"></ion-icon>
+        
         <ion-icon name="person-circle"></ion-icon>
-        <div class="saludo">
-          Hello Tomas Ignacio Paredes
-        </div>
-        <ion-icon name="settings"></ion-icon>
       </div>
-      <div class="tarjeta">
-        <div class="datos-tarjeta">
-          <div class="nombre-tarjeta">Tomás Alvares</div>
-          <div class="monto-tarjeta">$54.000</div>
-          <div class="numero-tarjeta">**** **** **** 0123</div>
+      <div id="centro">
+        <div class="input">
+          <input type="text" placeholder="Zapatillas">
+          <ion-icon name="search"></ion-icon>
         </div>
-        <div class="icono-tarjeta"><img src="/assets/mastercard.png" alt=""></div>
+        <div class="options">
+          <ion-icon name="options"></ion-icon>
+        </div>
       </div>
+      <div id="abajo">
+        <h3>Zapatillas</h3>
+        <div class="carro">
+          <ion-icon name="cart" id="carro"></ion-icon>
+          <!-- <div class="items">{{getCantidadCarro()}}</div> -->
+        </div>
+        <select>
+          <option value="" disabled selected hidden>Ordenar</option>
+          <option value="Valor">Valor</option>
+        </select>
+      </div>
+
     </header>
-    <article>
-      <section class="transacciones">
-        <div class="transaccion" (click)="animaTransaccion(0)">
-          <div class="info-transaccion">
-            <h1>Muñeca system</h1>
-            <h4>10 de Agosto de 2030</h4>
-          </div>
-          <div class="boton-transaccion">
-            +
-          </div>
+
+
+    <article id="shoes">
+      <div class="zapatillas" *ngFor="let zapatilla of zapatillas">
+        <div class="up">
+          <div class="descuento" class="{{zapatilla.descuento==0?'invisible':''}}">{{zapatilla.descuento}}%</div>
+          <div class="like" class="{{zapatilla.favoritas?'':'deshablitado'}}">❤️</div>
         </div>
-        <div class="transaccion" (click)="animaTransaccion(1)">
-          <div class="info-transaccion">
-            <h1>Muñeca system</h1>
-            <h4>10 de Agosto de 2030</h4>
-          </div>
-          <div class="boton-transaccion">
-            +
-          </div>
+        <div class="center">
+          <img src="/assets/{{zapatilla.imagen}}" alt="" class="preview">
         </div>
-      </section>
+        <div class="bottom">
+          <div class="info">
+            <div class="nombre">{{zapatilla.nombre}}</div>
+            <div class="valor">${{zapatilla.precio}}</div>
+            <div class="estrellas">
+              {{poneEstrellas(zapatilla.estrellas)}}
+            </div>
+          </div>
+          <div class="add" (click)="agregar(zapatilla)">+</div>
+        </div>
+      </div>
+
+<!--       <div class="zapatillas">
+        <div class="up">
+          <div class="descuento"> 20% off</div>
+          <div class="like">❤️</div>
+        </div>
+        <div class="center">
+          <img src="/assets/5.png" alt="" class="preview">
+        </div>
+        <div class="bottom">
+          <div class="info">
+            <div class="nombre">Shoes</div>
+            <div class="valor">$100.00</div>
+            <div class="estrellas">
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+          <div class="add">+</div>
+        </div>
+      </div>
+      <div class="zapatillas">
+        <div class="up">
+          <div class="descuento"> 20% off</div>
+          <div class="like">❤️</div>
+        </div>
+        <div class="center">
+          <img src="/assets/7.png" alt="" class="preview">
+        </div>
+        <div class="bottom">
+          <div class="info">
+            <div class="nombre">Shoes</div>
+            <div class="valor">$100.00</div>
+            <div class="estrellas">
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+          <div class="add">+</div>
+        </div>
+      </div>
+      <div class="zapatillas">
+        <div class="up">
+          <div class="descuento"> 20% off</div>
+          <div class="like">❤️</div>
+        </div>
+        <div class="center">
+          <img src="/assets/8.png" alt="" class="preview">
+        </div>
+        <div class="bottom">
+          <div class="info">
+            <div class="nombre">Shoes</div>
+            <div class="valor">$100.00</div>
+            <div class="estrellas">
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+          <div class="add">+</div>
+        </div>
+      </div> -->
     </article>
   </div>
-  <footer>
-    <ion-icon name="home-outline"></ion-icon>
-    <ion-icon name="stats-chart-outline"></ion-icon>
-    <ion-icon name="mail-open-outline"></ion-icon>
-    <!-- [routerLink]="['/wallet']" -->
-    <ion-icon name="wallet-outline" (click)="irWallet()"></ion-icon>
-  </footer>
+
+
+
+
 </ion-content>

@@ -11,10 +11,6 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {
-    path: 'wallet',
-    loadChildren: () => import('./wallet/wallet.module').then( m => m.WalletPageModule)
-  },
 ];
 
 @NgModule({
